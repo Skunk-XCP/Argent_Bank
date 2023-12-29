@@ -38,7 +38,7 @@ export function NavBar() {
                         User
                      </Link>
                      <Link
-                        classNameName="main-nav-item"
+                        className="main-nav-item"
                         to="/"
                         onClick={handleLogOut}
                      >

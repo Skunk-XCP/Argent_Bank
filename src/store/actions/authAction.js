@@ -13,7 +13,8 @@ export const login = (user) => async (dispatch) => {
       dispatch({ type: "LOGIN_SUCCESS", payload: response.data.body.token });
    } catch (error) {
       // Dispatch l'action d'échec en cas d'erreur
-      dispatch({ type: "LOGIN_FAIL", payload: error });
+      let errorMessage = "Aucun identifiant ne correspond";
+      dispatch({ type: "LOGIN_FAIL", payload: errorMessage });
    }
 };
 
@@ -26,5 +27,17 @@ export const logOut = () => async (dispatch) => {
       dispatch({ type: "LOGOUT" });
    } catch (error) {
       console.error(error);
+   }
+};
+
+// Action Redux pour vérifier la présence d'un token d'authentification
+export const checkToken = () => (dispatch) => {
+   // Récupère le token depuis le localStorage
+   const token = localStorage.getItem("token");
+
+   // Si un token est trouvé, considère que l'utilisateur est authentifié
+   if (token) {
+      // Dispatch l'action LOGIN_SUCCESS avec le token
+      dispatch({ type: "LOGIN_SUCCESS", payload: token });
    }
 };

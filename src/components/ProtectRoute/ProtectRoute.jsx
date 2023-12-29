@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 // Composant pour protéger les routes
 const ProtectRoute = ({ children }) => {
    // Utilise useSelector pour accéder à l'état d'auth du store Redux
-   const auth = useSelector((state) => state.auth.isAuthenticated);
+   const auth = useSelector((state) => {
+      return state.auth.isAuthenticated;
+   });
    return auth ? (
       // Rend les composants enfants si authentifié
       <Routes>{children}</Routes>

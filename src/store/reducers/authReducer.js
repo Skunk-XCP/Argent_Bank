@@ -27,7 +27,7 @@ export default function authReducer(state = initialState, action) {
             isAuthenticated: false,
             // Efface le token
             token: null,
-            error: "unknown user",
+            error: action.payload || "Aucun identifiant ne correspond",
          };
       // Gère l'action de déconnexion
       case "LOGOUT":

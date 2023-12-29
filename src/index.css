@@ -12,7 +12,6 @@ code {
       monospace;
 }
 
-/* ----------------------------------------------- */
 html {
    font-family: Avenir, Helvetica, Arial, sans-serif;
    -webkit-font-smoothing: antialiased;
@@ -174,6 +173,7 @@ body {
    font-size: 1.1rem;
    font-weight: bold;
    margin-top: 1rem;
+   margin-bottom: 10px;
    border-color: #00bc77;
    background-color: #00bc77;
    color: #fff;
@@ -181,7 +181,6 @@ body {
 
 .error-message {
    color: red;
-   font-size: 1.2em;
 }
 
 .sign-in-content {
