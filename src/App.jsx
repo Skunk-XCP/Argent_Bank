@@ -13,6 +13,7 @@ export function App() {
    useEffect(() => {
       dispatch(checkToken());
    }, [dispatch]);
+
    return (
       <>
          <Routes>

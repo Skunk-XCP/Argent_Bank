@@ -2,33 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../store/actions/authAction";
+import { postProfile } from "../../store/actions/profilAction";
 
 export function SignIn() {
    // Utilise useSelector pour accéder à l'état d'authentification du store Redux
    const auth = useSelector((state) => state.auth.isAuthenticated);
    const token = useSelector((state) => state.auth.token);
    const error = useSelector((state) => state.auth.error);
+
    // useDispatch pour dispatcher des actions Redux
    const dispatch = useDispatch();
    const navigate = useNavigate();
+
    // État local pour gérer les données du formulaire
    const [formData, setFormData] = useState({ username: "", password: "" });
 
-   // useEffect pour réagir aux changements d'état d'authentification
-   useEffect(() => {
-      const fetchData = async () => {
-         if (auth) {
-            // Stocke le token et redirige vers le profil
-            localStorage.setItem("token", token);
-            // dispatch(postProfile());
-            navigate("/profile");
-         }
-      };
-      fetchData();
-   }, [auth, navigate, token]);
-
    // Gère la soumission du formulaire
-   const handleSubmit = async (event) => {
+   const handleSubmit = (event) => {
       event.preventDefault();
       // Dispatch l'action de connexion
       dispatch(login(formData));
@@ -38,6 +28,22 @@ export function SignIn() {
    const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
    };
+
+   // useEffect pour réagir aux changements d'état d'authentification
+   useEffect(() => {
+      const fetchData = async () => {
+         if (auth) {
+            dispatch(postProfile(auth));
+
+            // dispatch(postProfile());
+            navigate("/profile");
+
+            // Stocke le token et redirige vers le profil
+            localStorage.setItem("token", token);
+         }
+      };
+      fetchData();
+   }, [auth, navigate, dispatch, token]);
 
    return (
       <>

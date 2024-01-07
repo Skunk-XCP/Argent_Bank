@@ -13,8 +13,7 @@ export const login = (user) => async (dispatch) => {
       dispatch({ type: "LOGIN_SUCCESS", payload: response.data.body.token });
    } catch (error) {
       // Dispatch l'action d'échec en cas d'erreur
-      let errorMessage = "Aucun identifiant ne correspond";
-      dispatch({ type: "LOGIN_FAIL", payload: errorMessage });
+      dispatch({ type: "LOGIN_FAIL", payload: error });
    }
 };
 
