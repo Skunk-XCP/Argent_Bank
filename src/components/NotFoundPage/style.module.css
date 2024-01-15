@@ -1,0 +1,22 @@
+.container {
+   margin-bottom: 30vh;
+}
+
+.error_404 {
+   font-size: 5em;
+   color: black;
+}
+
+.error_message {
+   font-size: 1.5em;
+   font-weight: bold;
+   color: #00bc78;
+}
+
+.error_message_span {
+   color: #005834;
+}
+
+.error_link {
+   text-decoration: none;
+}

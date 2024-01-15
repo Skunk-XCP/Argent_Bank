@@ -69,25 +69,51 @@ export function UserProfile() {
             </div>
             {isEditing && (
                <form onSubmit={handleFormSubmit}>
-                  <input
-                     type="text"
-                     name="firstname"
-                     value={formData.firstname}
-                     onChange={handleChange}
-                  />
-                  <input
-                     type="text"
-                     name="lastname"
-                     value={formData.lastname}
-                     onChange={handleChange}
-                  />
-                  <button type="submit">Save</button>
-                  <button type="button" onClick={() => setIsEditing(false)}>
-                     Cancel
-                  </button>
+                  <div className={s.formContainer}>
+                     <div className={s.inputsContainer}>
+                        <div className={s.inputWrapper}>
+                           <label htmlFor="newFirstName"></label>
+                           <input
+                              type="text"
+                              name="firstname"
+                              value={formData.firstname}
+                              onChange={handleChange}
+                           />
+                        </div>
+                        <div className={s.inputWrapper}>
+                           <label htmlFor="newLastName"></label>
+                           <input
+                              type="text"
+                              name="lastname"
+                              value={formData.lastname}
+                              onChange={handleChange}
+                           />
+                        </div>
+                     </div>
+
+                     <div className={s.buttonsContainer}>
+                        <button
+                           type="submit"
+                           className={`${s.styleBtn} ${s.saveBtn}`}
+                        >
+                           Save
+                        </button>
+                        <button
+                           type="button"
+                           className={`${s.styleBtn} ${s.cancelBtn}`}
+                           onClick={() => setIsEditing(false)}
+                        >
+                           Cancel
+                        </button>
+                     </div>
+                  </div>
                </form>
             )}
-            {!isEditing && <button onClick={handleEditName}>Edit Name</button>}
+            {!isEditing && (
+               <button className="edit-button" onClick={handleEditName}>
+                  Edit Name
+               </button>
+            )}
 
             <h2 className="sr-only">Accounts</h2>
             <section className="account">

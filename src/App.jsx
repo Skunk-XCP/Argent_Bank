@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { checkToken } from "./store/actions/authAction";
 import ProtectRoute from "./components/ProtectRoute/ProtectRoute";
+import { NotFoundPage } from "./components/NotFoundPage/NotFoundPage";
 
 export function App() {
    const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export function App() {
          <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/signin" element={<SignIn />} />
+            <Route path="*" element={<NotFoundPage />} />
             <Route
                path="/profile/*"
                element={
