@@ -15,6 +15,14 @@
    font-size: 1.2rem;
 }
 
+.inputField {
+   height: 25px;
+}
+
+.inputField::placeholder {
+   color: lightgrey;
+}
+
 .buttonsContainer {
    display: flex;
    justify-content: center;
@@ -34,6 +42,12 @@
 .saveBtn {
    border-color: #00bc77;
    background-color: #00bc77;
+}
+
+.error_name {
+   color: red;
+   font-size: 0.6em;
+   margin: 0;
 }
 
 .cancelBtn {

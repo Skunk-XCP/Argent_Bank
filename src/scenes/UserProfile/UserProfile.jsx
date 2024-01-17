@@ -15,6 +15,9 @@ export function UserProfile() {
    const token = useSelector((state) => state.auth.token);
    const userProfile = useSelector((state) => state.profile);
 
+   const [error, setError] = useState("");
+   const [invalidCharError, setInvalidCharError] = useState("");
+
    // État local pour la gestion de l'édition et les données du formulaire
    const [isEditing, setIsEditing] = useState(false);
    const [formData, setFormData] = useState({ firstname: "", lastname: "" });
@@ -23,8 +26,41 @@ export function UserProfile() {
       setIsEditing(true);
    };
 
+   const regex = /^[A-Za-zÀ]{2,20}$/;
+
    const handleFormSubmit = (e) => {
       e.preventDefault();
+
+      // Vérifie si les champs sont vides
+      if (!formData.firstname || !formData.lastname) {
+         setError("Les champs prénom et nom sont requis.");
+         return;
+      }
+
+      // Vérifie d'abord la longueur des champs
+      if (
+         formData.firstname.length < 2 ||
+         formData.firstname.length > 20 ||
+         formData.lastname.length < 2 ||
+         formData.lastname.length > 20
+      ) {
+         setInvalidCharError(
+            "Le nom et le prénom doivent contenir entre 2 et 20 caractères."
+         );
+         return;
+      }
+
+      // Vérifie la longueur et les caractères alphabétiques
+      if (!regex.test(formData.firstname) || !regex.test(formData.lastname)) {
+         setInvalidCharError(
+            "Seuls les caractères alphabétiques sont autorisés."
+         );
+         return;
+      }
+
+      // Réinitialise les messages d'erreur
+      setError("");
+      setInvalidCharError("");
 
       dispatch(updateProfile({ token, formData }));
       dispatch(postProfile({ token, isAuthenticated }));
@@ -38,8 +74,21 @@ export function UserProfile() {
    };
 
    const handleChange = (e) => {
+      const { name, value } = e.target;
+
+      if (value === "" || regex.test(value)) {
+         setFormData({ ...formData, [name]: value });
+      }
+
       setFormData({ ...formData, [e.target.name]: e.target.value });
       console.log(formData);
+   };
+
+   const handleCancel = () => {
+      setIsEditing(false);
+      setFormData({ firstname: "", lastname: "" }); // Réinitialise les champs
+      setError(""); // Réinitialise les messages d'erreur
+      setInvalidCharError("");
    };
 
    // Écoute les changements d'authentification pour récupérer le profil
@@ -76,6 +125,8 @@ export function UserProfile() {
                            <input
                               type="text"
                               name="firstname"
+                              className={s.inputField}
+                              placeholder={userProfile.body.firstName}
                               value={formData.firstname}
                               onChange={handleChange}
                            />
@@ -85,11 +136,17 @@ export function UserProfile() {
                            <input
                               type="text"
                               name="lastname"
+                              className={s.inputField}
+                              placeholder={userProfile.body.lastName}
                               value={formData.lastname}
                               onChange={handleChange}
                            />
                         </div>
                      </div>
+                     {error && <p className={s.error_name}>{error}</p>}
+                     {invalidCharError && (
+                        <p className={s.error_name}>{invalidCharError}</p>
+                     )}
 
                      <div className={s.buttonsContainer}>
                         <button
@@ -101,7 +158,7 @@ export function UserProfile() {
                         <button
                            type="button"
                            className={`${s.styleBtn} ${s.cancelBtn}`}
-                           onClick={() => setIsEditing(false)}
+                           onClick={handleCancel}
                         >
                            Cancel
                         </button>
