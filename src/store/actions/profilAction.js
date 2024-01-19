@@ -16,7 +16,6 @@ export const postProfile =
                Authorization: `Bearer ${token}`,
             },
          });
-         console.log(response);
 
          dispatch({ type: "PROFILE_SUCCESS", payload: response.data });
       } catch (error) {
