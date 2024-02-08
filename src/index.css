@@ -33,6 +33,8 @@ body {
 
 .bg-dark {
    background-color: #12002b;
+   height: 100vh;
+   padding-top: 5vh;
 }
 
 .sr-only {
@@ -188,7 +190,6 @@ body {
    background-color: white;
    width: 300px;
    margin: 0 auto;
-   margin-top: 3rem;
    padding: 2rem;
 }
 
@@ -221,10 +222,15 @@ body {
 }
 
 .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
    display: flex;
    justify-content: center;
    border-top: 2px solid #ccc;
    padding: 2rem 0 1.5rem;
+   background-color: #fff;
 }
 
 .footer-text {

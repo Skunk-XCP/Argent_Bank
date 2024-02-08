@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../store/actions/authAction";
 import { postProfile } from "../../store/actions/profilAction";
+import { NavBar } from "../../components/NavBar/NavBar";
+import { Footer } from "../../components/Footer/Footer";
 
 export function SignIn() {
    // Utilise useSelector pour accéder à l'état d'authentification du store Redux
@@ -47,6 +49,7 @@ export function SignIn() {
 
    return (
       <>
+         <NavBar />
          <main className="main bg-dark">
             <section className="sign-in-content">
                <i className="fa fa-user-circle sign-in-icon"></i>
@@ -83,6 +86,7 @@ export function SignIn() {
                {error && <span className="error-message">{error}</span>}
             </section>
          </main>
+         <Footer />
       </>
    );
 }
