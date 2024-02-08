@@ -1,7 +1,9 @@
 import { NavBar } from "../../components/NavBar/NavBar";
 import { HeroContent } from "../../components/HeroContent/HeroContent";
-import { Features } from "../../components/Features/Features";
+import { Support } from "../../components/Features/Support/Support";
+import { Security } from "../../components/Features/Security.jsx/Security";
 import { Footer } from "../../components/Footer/Footer";
+import { Savings } from "../../components/Features/Savings/Savings";
 
 export function HomePage() {
    return (
@@ -9,7 +11,11 @@ export function HomePage() {
          <NavBar />
          <main>
             <HeroContent />
-            <Features />
+            <section className="features">
+               <Support />
+               <Savings />
+               <Security />
+            </section>
          </main>
          <Footer />
       </>
