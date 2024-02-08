@@ -10,6 +10,7 @@ export function NavBar() {
 
    // Accède à l'état d'authentification dans le store Redux
    const auth = useSelector((state) => state.auth.isAuthenticated);
+   const getName = useSelector((state) => state.profile.body.firstName);
 
    // Définit la fonction pour gérer le logout
    const handleLogOut = () => {
@@ -35,7 +36,7 @@ export function NavBar() {
                   <>
                      <Link className="main-nav-item" to="/profile">
                         <i className="fa fa-user-circle"></i>
-                        User
+                        {getName}
                      </Link>
                      <Link
                         className="main-nav-item"
