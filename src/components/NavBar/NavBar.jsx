@@ -2,6 +2,7 @@ import logo from "../../assets/images/argentBankLogo.png";
 import { Link, useNavigate, Outlet } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logOut } from "../../store/actions/authAction";
+import userIcon from "../../assets/images/user-icon.svg";
 
 export function NavBar() {
    // Hooks pour la navigation et dispatcher des actions Redux
@@ -36,6 +37,11 @@ export function NavBar() {
                   <>
                      <Link className="main-nav-item" to="/profile">
                         <i className="fa fa-user-circle"></i>
+                        <img
+                           src={userIcon}
+                           alt="User Icon"
+                           className="user-icon"
+                        />
                         {getName}
                      </Link>
                      <Link

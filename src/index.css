@@ -76,6 +76,13 @@ body {
    text-decoration: underline;
 }
 
+.user-icon {
+   width: 20px;
+   height: auto;
+   margin-right: 8px;
+   vertical-align: middle;
+}
+
 .main-nav-logo {
    display: flex;
    align-items: center;
